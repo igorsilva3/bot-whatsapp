@@ -1,0 +1,20 @@
+{
+    "name": "igorsilva3/bot-whatsapp",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bots\\": "src/bots"
+        }
+    },
+    "require": {
+        "jhowbhz/package-apigratis": "^0.3.0",
+        "php": "^8.1"
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t src/"
+    },
+    "config": {
+        "process-timeout": 86400
+    }
+}
