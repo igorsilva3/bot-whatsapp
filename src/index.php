@@ -4,8 +4,9 @@ require_once './config/config.php';
 
 use Bots\BotMessageText;
 use Bots\BotMessageFile64;
+use Bots\FileMimeTypes;
 
-$phoneNumber = '5516991188107';
+$phoneNumber = '5516997778794';
 $message = 'Recebaaa!!!';
 
 // $result = json_encode([
@@ -24,7 +25,11 @@ $message = 'Recebaaa!!!';
 // $botMessageText = new BotMessageText(SESSION_NAME, $phoneNumber);
 // $botMessageText->send(['message' => $message]);
 
-$botMessageFile64 = new BotMessageFile64(SESSION_NAME, $phoneNumber);
+$botMessageFile64 = new BotMessageFile64(
+    SESSION_NAME,
+    $phoneNumber,
+    FileMimeTypes::PDF
+);
 $botMessageFile64->send([
     'fileName' => 'Testando',
     'path' => realpath('../tmp/testando-meu-robô-de-enviar-documentos.pdf'),
