@@ -15,6 +15,12 @@
         "start": "php -S localhost:8000 -t src/"
     },
     "config": {
-        "process-timeout": 86400
+        "process-timeout": 86400,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.22"
     }
 }
