@@ -22,6 +22,7 @@
 
 - [Usage](#usage)
 - [Getting Started](#getting_started)
+- [Running tests](#running_tests)
 - [Built Using](#built_using)
 - [Authors](#authors)
 
@@ -96,7 +97,7 @@ Installing dependencies of the project:
 composer install
 ```
 
-### Running tests
+### Running tests <a name = "running_tests"></a>
 
 To run the tests, type:
 
