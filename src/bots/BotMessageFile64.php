@@ -32,16 +32,10 @@ class BotMessageFile64 extends Base
         $filePath = $args['path'];
         $caption = $args['caption'];
 
-        /* Converting the file into a string. */
-        $fileInString = file_get_contents($filePath);
+        /* Converting the file to base64. */
+        $fileEncoded64 = base64_encode(file_get_contents($filePath));
 
-        $path = "data:$this->fileMimeType;base64," . base64_encode($fileInString);
-
-        echo json_encode([
-            'filename' => $fileName,
-            'caption' => $caption,
-            'path' => $path,
-        ]);
+        $path = "data:$this->fileMimeType;base64,$fileEncoded64";
 
         try {
             $response = ApiBrasil::WhatsAppService($this->action, [
