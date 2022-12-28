@@ -4,8 +4,8 @@ require_once './src/config/config.php';
 
 use Bots\BotMessageText;
 
-$sessionName = 'Barry';
-$phoneNumber = '5516997778794';
+$sessionName = SESSION_NAME;
+$phoneNumber = PHONE_NUMBER;
 $message = 'Testando o robô de mensagem!';
 
 it('should to be able send a message for a contact', function () {

@@ -12,7 +12,8 @@
         "php": "^8.1"
     },
     "scripts": {
-        "start": "php -S localhost:8000 -t src/"
+        "start": "php -S localhost:8000 -t src/",
+        "pest": "./vendor/bin/pest"
     },
     "config": {
         "process-timeout": 86400,
