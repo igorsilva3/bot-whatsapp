@@ -46,9 +46,9 @@ $botMessageText = new BotMessageText('YOUR_SESSION_NAME', 'PHONE_NUMBER');
 $botMessageText->send(['message' => 'YOUR_MESSAGE']);
 
 // Instance of BotMessageFile64
-$botMessageText = new BotMessageFile64('YOUR_SESSION_NAME', 'PHONE_NUMBER', FileMimeTypes::PDF);
+$botMessageFile64 = new BotMessageFile64('YOUR_SESSION_NAME', 'PHONE_NUMBER', FileMimeTypes::PDF);
 
-$botMessageText->send([
+$botMessageFile64->send([
   'fileName' => 'YOUR_FILE_NAME',
   'caption' => 'YOUR_CAPTION',
   'path' => 'YOUR_FILE_PATH',
@@ -105,7 +105,7 @@ To run the tests, type:
 composer pest
 ```
 
-For more informations about the tests, acess: [PEST](https://pestphp.com/docs/installation)
+For more informations about the tests, acess: [Pest](https://pestphp.com/docs/installation)
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
