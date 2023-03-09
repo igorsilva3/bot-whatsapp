@@ -4,12 +4,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Bots\\": "src/bots"
+            "Bots\\": "src/bots",
+            "Sdk\\": "src/sdk"
         }
     },
     "require": {
-        "jhowbhz/package-apigratis": "^0.3.0",
-        "php": "^8.1"
+        "php": "^8.1",
+        "vlucas/phpdotenv": "^5.5"
     },
     "scripts": {
         "start": "php -S localhost:8000 -t src/",
