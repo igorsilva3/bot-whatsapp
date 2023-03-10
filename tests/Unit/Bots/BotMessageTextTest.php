@@ -3,22 +3,28 @@
 require_once './src/config/config.php';
 
 use Bots\BotMessageText;
+use Sdk\ApiBrasil;
 
-$sessionName = SESSION_NAME;
-$phoneNumber = PHONE_NUMBER;
+$phoneNumber = PHONE_NUMBER_TEST;
 $message = 'Testando o robô de mensagem!';
 
+$apiBrasil = new ApiBrasil([
+	'email' => AUTH_EMAIL,
+	'password' => AUTH_PASSWORD,
+	'secretKey' => SECRET_KEY,
+	'publicToken' => PUBLIC_TOKEN,
+	'deviceToken' => DEVICE_TOKEN
+]);
+
 it('should to be able send a message for a contact', function () {
-    global $sessionName, $phoneNumber, $message;
+	global $apiBrasil, $phoneNumber, $message;
 
-    $botMessageText = new BotMessageText($sessionName, $phoneNumber);
+	$botMessageText = new BotMessageText($apiBrasil->whatsappService, $phoneNumber);
 
-    ['result' => $result, 'type' => $type] = $botMessageText->send([
-        'message' => $message,
-    ]);
+	['result' => $result, 'type' => $type] = $botMessageText->send([
+		'message' => $message,
+	]);
 
-    expect($result)->toBe(200);
-    expect($type)->toBe('chat');
+	expect($result)->toBe(200);
+	expect($type)->toBe('chat');
 });
-
-?>

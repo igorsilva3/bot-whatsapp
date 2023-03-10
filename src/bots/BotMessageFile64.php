@@ -4,21 +4,11 @@ namespace Bots;
 
 use Bots\Base;
 
-enum FileMimeTypes: string
-{
-	case PNG = 'image/png';
-	case JPG = 'image/jpeg';
-	case GIF = 'image/gif';
-	case PDF = 'application/pdf';
-	case TXT = 'text/plain';
-	case MP4 = 'video/mp4';
-}
-
 class BotMessageFile64 extends Base
 {
-	private FileMimeTypes $fileMimeType;
+	private string $fileMimeType;
 
-	public function __construct($whatsappService, int|string $phoneNumber, FileMimeTypes $fileMimeType)
+	public function __construct($whatsappService, int|string $phoneNumber, string $fileMimeType)
 	{
 		parent::__construct($whatsappService, $phoneNumber);
 
@@ -35,7 +25,7 @@ class BotMessageFile64 extends Base
 				'phoneNumber' => $this->phoneNumber,
 				'path' => $filePath,
 				'caption' => $caption
-			], $this->fileMimeType->value);
+			], $this->fileMimeType);
 
 			return $response;
 		} catch (\Throwable $error) {
