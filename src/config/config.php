@@ -1,9 +1,12 @@
 <?php
 
-define('SERVER_HOST', 'https://whatsapp-free01.wppserver.com/');
-define('API_KEY', 'Gratis-12-Natal-LJZyLJzCGpLzGlZx253Z');
-define('SESSION_KEY', 'Gratis-12-Natal-LJZyLJzCGpLzGlZx253Z');
-define('SESSION_NAME', 'Barry');
-define('PHONE_NUMBER', '558398803506');
+$dotenv = Dotenv\Dotenv::createImmutable(realpath('..'));
+$dotenv->load();
 
-?>
+define('SERVER_HOST',  $_ENV['SERVER_HOST']);
+define('SECRET_KEY', $_ENV['SECRET_KEY']);
+define('PUBLIC_TOKEN', $_ENV['PUBLIC_TOKEN']);
+define('DEVICE_TOKEN', $_ENV['DEVICE_TOKEN']);
+define('AUTH_EMAIL', $_ENV['AUTH_EMAIL']);
+define('AUTH_PASSWORD', $_ENV['AUTH_PASSWORD']);
+define('PHONE_NUMBER_TEST', $_ENV['PHONE_NUMBER_TEST']);
