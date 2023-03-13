@@ -1,6 +1,6 @@
 <?php
 
-require_once './src/config/config.php';
+require_once './config/config.php';
 
 use Bots\BotMessageText;
 use Sdk\ApiBrasil;
@@ -21,10 +21,10 @@ it('should to be able send a message for a contact', function () {
 
 	$botMessageText = new BotMessageText($apiBrasil->whatsappService, $phoneNumber);
 
-	['result' => $result, 'type' => $type] = $botMessageText->send([
+	['error' => $error, 'message' => $messageRes] = $botMessageText->send([
 		'message' => $message,
 	]);
 
-	expect($result)->toBe(200);
-	expect($type)->toBe('chat');
+	expect($error)->toBe(false);
+	expect($messageRes)->toBe('Requisição processada com sucesso');
 });
