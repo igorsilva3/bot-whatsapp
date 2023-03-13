@@ -1,114 +1,78 @@
 <?php
 
-require_once './src/config/config.php';
+require_once './config/config.php';
 
 use Bots\BotMessageFile64;
-use Bots\FileMimeTypes;
+use Sdk\ApiBrasil;
+use Bots\Utils\FileMimeTypes;
 
-$sessionName = SESSION_NAME;
-$phoneNumber = PHONE_NUMBER;
-$fileName = 'Teste';
+$apiBrasil = new ApiBrasil([
+    'email' => AUTH_EMAIL,
+    'password' => AUTH_PASSWORD,
+    'secretKey' => SECRET_KEY,
+    'publicToken' => PUBLIC_TOKEN,
+    'deviceToken' => DEVICE_TOKEN
+]);
+
+$phoneNumber = PHONE_NUMBER_TEST;
 $caption = 'Testando o robô de arquivos!';
 
-$pathPDF = realpath('./tmp/testando-meu-robô-de-enviar-documentos.pdf');
-$pathMP4 = realpath('./tmp/giphy480p.mp4');
-$pathGIF = realpath('./tmp/giphy480p.gif');
-$pathPNG = realpath('./tmp/code.png');
-$pathJPG = realpath('./tmp/fb-leverage-of-coding.jpg');
+$pathPDF = realpath('./tmp/testando-meu-robô-de-enviar-anexos.pdf');
+$pathPNG = realpath('./tmp/testando-meu-robô-de-enviar-anexos.png');
+$pathJPG = realpath('./tmp/testando-meu-robô-de-enviar-anexos.jpg');
 
 it('should to be able send a pdf document for a contact', function () {
-    global $sessionName, $phoneNumber, $pathPDF, $fileName, $caption;
+    global $apiBrasil, $phoneNumber, $pathPDF, $caption;
 
     $botMessageFile64 = new BotMessageFile64(
-        $sessionName,
+        $apiBrasil->whatsappService,
         $phoneNumber,
         FileMimeTypes::PDF
     );
 
-    ['result' => $result, 'type' => $type] = $botMessageFile64->send([
-        'fileName' => $fileName,
-        'caption' => $caption,
+    ['error' => $error, 'message' => $messageRes] = $botMessageFile64->send([
         'path' => $pathPDF,
-    ]);
-
-    expect($result)->toBe(200);
-    expect($type)->toBe('file');
-});
-
-it('should to be able send a mp4 video for a contact', function () {
-    global $sessionName, $phoneNumber, $pathMP4, $fileName, $caption;
-
-    $botMessageFile64 = new BotMessageFile64(
-        $sessionName,
-        $phoneNumber,
-        FileMimeTypes::MP4
-    );
-
-    ['result' => $result, 'type' => $type] = $botMessageFile64->send([
-        'fileName' => $fileName,
         'caption' => $caption,
-        'path' => $pathMP4,
     ]);
 
-    expect($result)->toBe(200);
-    expect($type)->toBe('file');
-});
-
-it('should to be able send a gif image for a contact', function () {
-    global $sessionName, $phoneNumber, $pathGIF, $fileName, $caption;
-
-    $botMessageFile64 = new BotMessageFile64(
-        $sessionName,
-        $phoneNumber,
-        FileMimeTypes::GIF
-    );
-
-    ['result' => $result, 'type' => $type] = $botMessageFile64->send([
-        'fileName' => $fileName,
-        'caption' => $caption,
-        'path' => $pathGIF,
-    ]);
-
-    expect($result)->toBe(200);
-    expect($type)->toBe('file');
+    expect($error)->toBe(false);
+    expect($messageRes)->toBe('Requisição processada com sucesso');
 });
 
 it('should to be able send a png image for a contact', function () {
-    global $sessionName, $phoneNumber, $pathPNG, $fileName, $caption;
+    global $apiBrasil, $phoneNumber, $pathPNG, $caption;
 
     $botMessageFile64 = new BotMessageFile64(
-        $sessionName,
+        $apiBrasil->whatsappService,
         $phoneNumber,
         FileMimeTypes::PNG
     );
 
-    ['result' => $result, 'type' => $type] = $botMessageFile64->send([
-        'fileName' => $fileName,
-        'caption' => $caption,
+    ['error' => $error, 'message' => $messageRes] = $botMessageFile64->send([
         'path' => $pathPNG,
+        'caption' => $caption,
     ]);
 
-    expect($result)->toBe(200);
-    expect($type)->toBe('file');
+
+    expect($error)->toBe(false);
+    expect($messageRes)->toBe('Requisição processada com sucesso');
 });
 
 it('should to be able send a jpg image for a contact', function () {
-    global $sessionName, $phoneNumber, $pathJPG, $fileName, $caption;
+    global $apiBrasil, $phoneNumber, $pathJPG, $caption;
 
     $botMessageFile64 = new BotMessageFile64(
-        $sessionName,
+        $apiBrasil->whatsappService,
         $phoneNumber,
         FileMimeTypes::JPG
     );
 
-    ['result' => $result, 'type' => $type] = $botMessageFile64->send([
-        'fileName' => $fileName,
-        'caption' => $caption,
+    ['error' => $error, 'message' => $messageRes] = $botMessageFile64->send([
         'path' => $pathJPG,
+        'caption' => $caption,
     ]);
 
-    expect($result)->toBe(200);
-    expect($type)->toBe('file');
-});
 
-?>
+    expect($error)->toBe(false);
+    expect($messageRes)->toBe('Requisição processada com sucesso');
+});
