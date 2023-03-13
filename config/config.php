@@ -1,6 +1,9 @@
 <?php
 
-$dotenv = Dotenv\Dotenv::createImmutable(realpath('..'));
+$dotenv = Dotenv\Dotenv::createImmutable([
+  realpath('..'),
+  realpath('./')
+]);
 $dotenv->load();
 
 define('SERVER_HOST',  $_ENV['SERVER_HOST']);
